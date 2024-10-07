@@ -4,7 +4,7 @@
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: '')]
+#[ORM\Table(name: 'products')]
 class Product
 {
 	#[ORM\Id]
