@@ -2,6 +2,8 @@
 // src/Bug.php
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'bugs')]
@@ -55,4 +57,14 @@ class Bug
     {
         return $this->status;
     }
+
+    /** @var Collection<int, Product> */
+    private Collection $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 }
+
+?>
