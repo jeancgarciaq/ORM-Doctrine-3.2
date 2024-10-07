@@ -7,10 +7,10 @@ use Doctrine\ORM\ORMSetup;
 
 require_once 'vendor/autoload.php';
 
-//Create a simple "default" Doctrine ORM configuration for Atributes
-$config = ORM::createAttributeMetadataConfiguration(
-  paths: [__DIR__ '/src'],
-  isDevMode: true,
+// Create a simple "default" Doctrine ORM configuration for Attributes
+$config = ORMSetup::createAttributeMetadataConfiguration(
+    paths: [__DIR__ . '/src'],
+    isDevMode: true,
 );
 
 // or if you prefer XML
@@ -19,16 +19,19 @@ $config = ORM::createAttributeMetadataConfiguration(
 //    isDevMode: true,
 //);
 
-//configuring the database conection | I use WAMP 32bits
-$connection = DriverManager::getConnection([
-  'dbname'    => 'tutorialdoctrine',
+// configuring the params of database
+$paramsDb = [
+  'driver'    => 'pdo_mysql',
   'user'      => 'root',
   'password'  => '',
+  'dbname'    => 'sac',
   'host'      => 'localhost',
-  'driver'    => 'pdo_mysql',
-], $config);
+];
 
-//obtain the Entity Manager
+// configuring the database connection
+$connection = DriverManager::getConnection($paramsDb, $config);
+
+// obtaining the entity manager
 $entityManager = new EntityManager($connection, $config);
 
 ?>
