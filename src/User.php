@@ -18,6 +18,14 @@ class User
     #[ORM\Column(type: 'string')]
     private string $name;
 
+    /** @var Collection<int, Bug> An ArrayCollection of Bug objects. */
+    #[ORM\OneToMany(targetEntity: Bug::class, mappedBy: 'reporter')]
+    private Collection $reportedBugs;
+
+    /** @var Collection<int,Bug> An ArrayCollection of Bug objects. */
+    #[ORM\OneToMany(targetEntity: Bug::class, mappedBy: 'engineer')]
+    private $assignedBugs;
+
     public function getId(): int|null
     {
         return $this->id;
@@ -32,11 +40,6 @@ class User
     {
         $this->name = $name;
     }
-
-   /** @var Collection<int, Bug> */
-   private Collection $reportedBugs;
-   /** @var Collection<int, Bug> */
-   private Collection $assignedBugs;
 
    public function __construct()
    {
