@@ -4,6 +4,7 @@
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use DateTime;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'bugs')]
@@ -22,6 +23,16 @@ class Bug
 
     #[ORM\Column(type: 'string')]
     private string $status;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'assignedBugs')]
+    private User|null $engineer = null;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reportedBugs')]
+    private User|null $reporter;
+
+    /** @var Collection<int, Product> */
+    #[ORM\ManyToMany(targetEntity: Product::class)]
+    private Collection $products;
 
     public function getId(): int|null
     {
@@ -58,16 +69,16 @@ class Bug
         return $this->status;
     }
 
-    /** @var Collection<int, Product> */
-    private Collection $products;
-
     public function __construct()
     {
         $this->products = new ArrayCollection();
     }
 
-    private User $engineer;
-    private User $reporter;
+    /** @return Collection<int, Product> */
+    public function getProducts(): Collection
+    {
+       return $this->products;
+    }
 
     public function setEngineer(User $engineer): void
     {
