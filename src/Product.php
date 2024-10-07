@@ -1,5 +1,6 @@
-<?php 
+<?php
 // src/Product.php
+namespace Src;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,7 +15,7 @@ class Product
 	#[ORM\Column(type: 'string')]
 	private string $name;
 
-	public function getId(): int|null 
+	public function getId(): int|null
 	{
 		return $this->id;
 	}
@@ -24,7 +25,7 @@ class Product
 		return $this->name;
 	}
 
-	public function setName(string $name): void 
+	public function setName(string $name): void
 	{
 		$this->name = $name;
 	}
