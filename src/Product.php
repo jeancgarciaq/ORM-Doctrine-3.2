@@ -1,6 +1,5 @@
 <?php
 // src/Product.php
-namespace Src;
 
 use Doctrine\ORM\Mapping as ORM;
 
