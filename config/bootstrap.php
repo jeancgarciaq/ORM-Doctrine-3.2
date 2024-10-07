@@ -9,7 +9,7 @@ require_once 'vendor/autoload.php';
 
 // Create a simple "default" Doctrine ORM configuration for Attributes
 $config = ORMSetup::createAttributeMetadataConfiguration(
-    paths: [__DIR__ . '/src'],
+    paths: ['src'],
     isDevMode: true,
 );
 
@@ -24,7 +24,7 @@ $paramsDb = [
   'driver'    => 'pdo_mysql',
   'user'      => 'root',
   'password'  => '',
-  'dbname'    => 'sac',
+  'dbname'    => 'tutorialdoctrine',
   'host'      => 'localhost',
 ];
 
