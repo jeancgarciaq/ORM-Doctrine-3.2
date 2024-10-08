@@ -17,3 +17,5 @@ For this Tutorial I will implement the Bug Tracker domain model from the Zend_Db
 * The assigned engineer can close a Bug.
 * A User can see all their reported or assigned Bugs.
 * Bugs can be paginated through a list-view.
+
+## This repository is based on the original tutorial: [Getting Started with Doctrine](https://www.doctrine-project.org/projects/doctrine-orm/en/3.2/tutorials/getting-started.html#getting-started-with-doctrine)
