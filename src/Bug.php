@@ -33,6 +33,11 @@ class Bug
     #[ORM\ManyToMany(targetEntity: Product::class)]
     private Collection $products;
 
+    public function __construct()
+    {
+      $this->products = new ArrayCollection();
+    }
+
     public function getId(): int|null
     {
         return $this->id;
@@ -68,9 +73,9 @@ class Bug
         return $this->status;
     }
 
-    public function __construct()
+    public function assignToProduct(Product $product): void
     {
-        $this->products = new ArrayCollection();
+        $this->products[] = $product;
     }
 
     /** @return Collection<int, Product> */
@@ -85,15 +90,15 @@ class Bug
         $this->engineer = $engineer;
     }
 
+    public function getEngineer(): User
+    {
+        return $this->engineer;
+    }
+
     public function setReporter(User $reporter): void
     {
         $reporter->addReportedBug($this);
         $this->reporter = $reporter;
-    }
-
-    public function getEngineer(): User
-    {
-        return $this->engineer;
     }
 
     public function getReporter(): User
