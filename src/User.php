@@ -3,6 +3,7 @@
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'users')]
@@ -26,9 +27,15 @@ class User
     #[ORM\OneToMany(targetEntity: Bug::class, mappedBy: 'reporter')]
     private Collection $reportedBugs;
 
+    public function __construct()
+    {
+      $this->reportedBugs = new Collection();
+      $this->assignedBugs = new Collection();
+    }
+
     public function addReportedBug(Bug $bug): void
     {
-        $this->reportedBugs[] = $bug;
+      $this->reportedBugs[] = $bug;
     }
 
     public function assignedToBug(Bug $bug): void
